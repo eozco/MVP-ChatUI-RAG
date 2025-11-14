@@ -1,0 +1,23 @@
+# Node
+node_modules
+*.log
+.next
+pnpm-lock.yaml
+
+# Python
+__pycache__
+*.py[cod]
+*.egg-info
+.venv
+.uv
+.env
+
+# Data / cache
+sandbox/documents/*
+!sandbox/documents/.gitkeep
+rag_store
+.cache
+
+# OS
+.DS_Store
+Thumbs.db
