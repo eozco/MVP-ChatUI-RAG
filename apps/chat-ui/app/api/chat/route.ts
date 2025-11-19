@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const DEFAULT_ENDPOINT = "http://localhost:8080/v1";
+const DEFAULT_ENDPOINT = "http://localhost:8000/v1";
 const DEFAULT_MODEL = "lab-mistral";
 
 export async function POST(request: Request) {

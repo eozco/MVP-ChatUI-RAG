@@ -3,9 +3,10 @@ version: "3.8"
 volumes:
   huggingface-cache:
 
+
 services:
   vllm:
-    image: vllm/vllm-openai:latest
+    image: vllm/vllm-openai:v0.6.3.post1
     container_name: lab-vllm
     ports:
       - "8080:8080"
@@ -14,10 +15,12 @@ services:
       resources:
         reservations:
           devices:
-            - capabilities: [gpu]
+            - capabilities: [ gpu ]
     environment:
       HF_HOME: /data/huggingface
       HUGGING_FACE_HUB_TOKEN: ${HUGGING_FACE_HUB_TOKEN:-}
+      NCCL_P2P_DISABLE: "1"
+    ipc: host
     volumes:
       - huggingface-cache:/data/huggingface
     command:
@@ -36,6 +39,9 @@ services:
       - --tensor-parallel-size
       - "1"
       - --trust-remote-code
+      - --gpu-memory-utilization
+      - "0.85"
+      - --enforce-eager
 
   prometheus:
     image: prom/prometheus:latest
