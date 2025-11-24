@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
-const DEFAULT_ENDPOINT = "http://localhost:8000/v1";
-const DEFAULT_MODEL = "lab-mistral";
+const DEFAULT_ENDPOINT = "http://localhost:8001/v1";
+const DEFAULT_MODEL = "lab-llama-3.1-8b-awq";
 
 export async function POST(request: Request) {
   try {

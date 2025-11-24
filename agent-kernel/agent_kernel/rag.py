@@ -23,7 +23,7 @@ def get_index(data_dir: str = "../sandbox"):
     Settings.llm = OpenAI(
         api_key="EMPTY",
         api_base="http://localhost:8080/v1",
-        model="lab-qwen3"
+        model="lab-llama-3.1-8b-awq"
     )
 
     documents = SimpleDirectoryReader(data_dir).load_data()

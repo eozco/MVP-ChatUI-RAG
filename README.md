@@ -2,7 +2,7 @@
 
 This repository provides an end-to-end local lab environment for experimenting with LLM-powered agents on a single GPU workstation. It covers:
 
-1.  **Model Serving** – Run a vLLM OpenAI-compatible endpoint on `http://localhost:8080/v1`
+1.  **Model Serving** – Run a vLLM OpenAI-compatible endpoint on `http://localhost:8080/v1` (Default: Llama 3.1 8B Instruct AWQ)
 2.  **Chat UI** – Minimal Next.js interface targeting the local agent
 3.  **Agent Kernel** – LangGraph "ReAct" loop with tool calling, RAG, and MCP servers (FastAPI on `http://localhost:8000`)
 4.  **RAG** – LlamaIndex over a sandboxed document directory
