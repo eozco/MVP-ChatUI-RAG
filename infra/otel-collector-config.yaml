@@ -9,21 +9,24 @@ receivers:
 processors:
   batch:
     timeout: 5s
+    send_batch_size: 256
     send_batch_max_size: 512
 
 exporters:
   logging:
     loglevel: info
   prometheus:
-    endpoint: 0.0.0.0:8888
+    endpoint: 0.0.0.0:9091
     namespace: otel
+  otlphttp:
+    endpoint: http://jaeger:4318
 
 service:
   pipelines:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [logging]
+      exporters: [logging, otlphttp]
     metrics:
       receivers: [otlp]
       processors: [batch]

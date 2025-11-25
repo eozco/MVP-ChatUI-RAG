@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting Agent Kernel server...")
-    logger.info("Server is ready to accept connections on http://127.0.0.1:8001")
+    logger.info("Server is ready to accept connections on http://localhost:8001")
     yield
     logger.info("Shutting down Agent Kernel server...")
 
@@ -54,7 +54,7 @@ async def chat_completions(request: ChatRequest):
         logger.info(f"Processing message: {user_message[:100]}...")
         
         # Call vLLM directly
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        async with httpx.AsyncClient(timeout=300.0) as client:
             vllm_response = await client.post(
                 "http://localhost:8080/v1/chat/completions",
                 json={
@@ -90,4 +90,4 @@ async def chat_completions(request: ChatRequest):
 
 if __name__ == "__main__":
     logger.info("Starting uvicorn server...")
-    uvicorn.run("agent_kernel.main:app", host="127.0.0.1", port=8001, reload=False, log_level="info")
+    uvicorn.run("agent_kernel.main:app", host="0.0.0.0", port=8001, reload=False, log_level="info")
